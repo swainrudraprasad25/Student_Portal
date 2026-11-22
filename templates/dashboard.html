@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - Student Portal</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Student Dashboard</h1>
+        <p class="subtitle">Welcome to your private profile overview.</p>
+
+        <div class="info-card">
+            <div class="info-row">
+                <span class="info-label">Student ID</span>
+                <span>#{{ user.id }}</span>
+            </div>
+            <div class="info-row">
+                <span class="info-label">Full Name</span>
+                <span>{{ user.name }}</span>
+            </div>
+            <div class="info-row">
+                <span class="info-label">Email Address</span>
+                <span>{{ user.email }}</span>
+            </div>
+            <div class="info-row">
+                <span class="info-label">Account Role</span>
+                <span>
+                    <span class="badge {% if user.role == 'admin' %}badge-admin{% else %}badge-student{% endif %}">
+                        {{ user.role }}
+                    </span>
+                </span>
+            </div>
+        </div>
+
+        <div class="nav-links-column">
+            {% if user.role == "admin" %}
+                <a href="/admin" class="btn btn-warning">Go to Admin Portal</a>
+            {% endif %}
+            <a href="/logout" class="btn btn-danger">Logout</a>
+        </div>
+    </div>
+</body>
+</html>
